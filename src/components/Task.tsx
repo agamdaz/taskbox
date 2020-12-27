@@ -32,7 +32,13 @@ export const Task: React.FC<TaskProps> = ({
       <span className="checkbox-custom" onClick={() => onArchiveTask && onArchiveTask(id)} />
     </label>
     <div className="title">
-      <input type="text" value={title} readOnly={true} placeholder="Input title" />
+      <input
+        type="text"
+        value={title}
+        readOnly={true}
+        placeholder="Input title"
+        style={{ background: 'red' }}
+      />
     </div>
 
     <div className="actions" onClick={event => event.stopPropagation()}>
