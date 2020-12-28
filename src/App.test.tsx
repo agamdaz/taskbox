@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders Storybook example', () => {
+test("renders Storybook example", () => {
   render(<App />);
   const linkElement = screen.getByText(/Taskbox/i);
   expect(linkElement).toBeInTheDocument();

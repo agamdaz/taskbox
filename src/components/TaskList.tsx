@@ -1,25 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { Task, TaskProps } from './Task';
-import { archiveTask, pinTask } from '../lib/redux';
+import { Task, TaskProps } from "./Task";
+import { archiveTask, pinTask } from "../lib/redux";
 
 export type TaskListProps = {
   /** Checks if it's in loading state */
-  loading?: boolean,
+  loading?: boolean;
   /** The list of tasks */
-  tasks: Array<TaskProps['task']>,
+  tasks: Array<TaskProps["task"]>;
   /** Event to change the task to pinned */
-  onPinTask?: TaskProps['onPinTask'],
+  onPinTask?: TaskProps["onPinTask"];
   /** Event to change the task to archived */
-  onArchiveTask?: TaskProps['onArchiveTask'],
-}
+  onArchiveTask?: TaskProps["onArchiveTask"];
+};
 
 export const PureTaskList: React.FC<TaskListProps> = ({
   loading = false,
   tasks = [],
   onPinTask,
-  onArchiveTask
+  onArchiveTask,
 }) => {
   const events = {
     onPinTask,
@@ -30,7 +30,9 @@ export const PureTaskList: React.FC<TaskListProps> = ({
     <div className="loading-item">
       <span className="glow-checkbox" />
       <span className="glow-text">
-        <span>Loading</span><span>cool</span><span>state</span>
+        <span>Loading</span>
+        <span>cool</span>
+        <span>state</span>
       </span>
     </div>
   );
@@ -60,23 +62,25 @@ export const PureTaskList: React.FC<TaskListProps> = ({
   }
 
   const tasksInOrder = [
-    ...tasks.filter(t => t.state === 'TASK_PINNED'),
-    ...tasks.filter(t => t.state !== 'TASK_PINNED'),
+    ...tasks.filter((t) => t.state === "TASK_PINNED"),
+    ...tasks.filter((t) => t.state !== "TASK_PINNED"),
   ];
   return (
     <div className="list-items">
-      {tasksInOrder.map(task => (
-          <Task key={task.id} task={task} {...events} />
+      {tasksInOrder.map((task) => (
+        <Task key={task.id} task={task} {...events} />
       ))}
     </div>
   );
-}
+};
 
 export default connect(
   ({ tasks }: TaskListProps) => ({
-    tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
+    tasks: tasks.filter(
+      (t) => t.state === "TASK_INBOX" || t.state === "TASK_PINNED"
+    ),
   }),
-  dispatch => ({
+  (dispatch) => ({
     onArchiveTask: (id: string) => dispatch(archiveTask(id)),
     onPinTask: (id: string) => dispatch(pinTask(id)),
   })

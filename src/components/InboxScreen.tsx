@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import TaskList from './TaskList';
+import TaskList from "./TaskList";
 
 export type InboxScreenProps = {
   /** The error message */
-  error: string,
+  error: string;
 };
 
 export const PureInboxScreen: React.FC<InboxScreenProps> = ({
-  error = null
+  error = null,
 }) => {
   if (error) {
     return (
@@ -33,7 +33,8 @@ export const PureInboxScreen: React.FC<InboxScreenProps> = ({
       <TaskList />
     </div>
   );
-}
+};
 
-export default connect(
-  ({ error }: InboxScreenProps) => ({ error }))(PureInboxScreen);
+export default connect(({ error }: InboxScreenProps) => ({ error }))(
+  PureInboxScreen
+);
