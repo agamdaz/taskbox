@@ -16,6 +16,11 @@ export type TaskProps = {
   onPinTask?: (id: string) => void;
 };
 
+/**
+ - Task is the core component in our app.
+ - Each task displays slightly differently depending on exactly what state it’s in.
+ **/
+
 export const Task: React.FC<TaskProps> = ({
   task: { id, title, state },
   onArchiveTask,
